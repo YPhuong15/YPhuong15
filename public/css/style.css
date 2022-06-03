@@ -3,3 +3,12 @@ h1 {
     color: cornflowerblue;
   }
   
+.homeImg {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.placesImg {
+    width: 100%;
+}
