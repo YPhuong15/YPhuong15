@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const places = require('../models/places.js')
+const places = require('../models/places')
 
 router.post('/', (req, res) => {
   if (!req.body.pic) {
@@ -33,8 +33,23 @@ router.get('/:id', (req, res) => {
     res.render('error404')
   }
   else {
-    res.render('places/show', { place: places[id] })
+    res.render('places/show', { place: places[id], id })
   }
 })
+
+router.delete('/places/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+    places.splice(id, 1)
+    res.redirect('/places')
+  }
+})
+
 
 module.exports = router
